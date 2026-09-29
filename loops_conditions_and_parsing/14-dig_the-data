@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-# This script groups visitors by IP and HTTP status code, ordered by number of occurrences
-awk '{count[$1 " " $9]++} END {for (k in count) printf "%7d %s\n", count[k], k}' apache-access.log | sort -rn
+# Groups visitors by IP and HTTP status code, sorted by occurrences (highest first)
+awk '{print $1, $9}' "${1:-apache-access.log}" | sort | uniq -c | sort -rn

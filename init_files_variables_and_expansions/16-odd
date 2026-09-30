@@ -1,8 +1,2 @@
 #!/bin/bash
-mapfile -t l
-i=0
-while ((i < ${#l[@]}))
-do
-printf '%s\n' "${l[i]}"
-((i+=2))
-done
+awk 'NR%2' "$@"
